@@ -57,6 +57,6 @@ function App() {
             </main>
         </div>
     );
-} l
+}
 
 export default App;
