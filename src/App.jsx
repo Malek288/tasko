@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import TaskCard from "./components/TaskoCard.jsx";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
     const [tasks, setTasks] = useState("");
@@ -55,6 +56,7 @@ function App() {
                     ))
                 )}
             </main>
+            <SpeedInsights />
         </div>
     );
 }
