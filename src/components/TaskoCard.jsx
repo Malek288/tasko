@@ -2,6 +2,7 @@ import "./TaskCard.css";
 import { useState } from "react";
 
 function TaskCard({
+    id,
     subject = "Default subject",
     description = "Default description",
     onDelete = () => {},
@@ -22,7 +23,7 @@ function TaskCard({
                     <button
                         type="button"
                         className="delete-button"
-                        onClick={onDelete}
+                        onClick={() => onDelete(id)}
                     >
                         Delete
                     </button>

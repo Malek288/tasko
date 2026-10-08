@@ -1,10 +1,17 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TaskCard from "./components/TaskoCard.jsx";
 
 function App() {
     const [tasks, setTasks] = useState("");
-    const [taskList, setTaskList] = useState([]);
+    const [taskList, setTaskList] = useState(() => {
+        const savedTasks = localStorage.getItem("taskList");
+        return savedTasks ? JSON.parse(savedTasks) : [];
+    });
+        
+    useEffect(() => {
+        localStorage.setItem("taskList", JSON.stringify(taskList));
+    }, [taskList]);
 
     function handleTask(e) {
         e.preventDefault();
@@ -48,9 +55,10 @@ function App() {
                     taskList.map((task) => (
                         <TaskCard
                             key={task.id}
-                            subject={task.subject}
+                            id={task.id}
                             description={task.title}
-                            onDelete={() => deleteTask(task.id)}
+                            subject={task.subject}
+                            onDelete={deleteTask}
                         />
                     ))
                 )}
