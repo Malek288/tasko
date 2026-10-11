@@ -127,17 +127,6 @@ function App() {
                 </>
             ) : (
                 <>
-                    {privateTaskList.length > 0 && (
-                        <nav className="task-navigation" aria-label="Task lists">
-                            <button
-                                type="button"
-                                className="private-tasks-link"
-                                onClick={() => setShowPrivateTasks(true)}
-                            >
-                                Private tasks
-                            </button>
-                        </nav>
-                    )}
                     <form onSubmit={handleTask}>
                         <input
                             value={tasks}
