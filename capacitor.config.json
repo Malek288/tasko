@@ -1,6 +1,6 @@
 {
   "appId": "com.malek.tasko",
-  "appName": "Tasko",
+  "appName": "Task Manager",
   "webDir": "dist",
   "backgroundColor": "#f4efe6"
 }

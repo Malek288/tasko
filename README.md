@@ -23,7 +23,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 1. Open the deployed HTTPS URL in Chrome on your phone and wait for the first visit to finish loading.
 2. Open Chrome's menu and choose **Add to Home screen** (or **Install app**, if offered).
-3. Confirm the install. Tasko will then open from its home-screen icon and will work offline after its first visit.
+3. Confirm the install. Task Manager will then open from its home-screen icon and will work offline after its first visit.
 
 ### Build an Android APK on Windows
 

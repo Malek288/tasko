@@ -9,8 +9,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Tasko',
-        short_name: 'Tasko',
+        name: 'Task Manager',
+        short_name: 'Task Manager',
         description: 'A simple task list',
         display: 'standalone',
         orientation: 'portrait',

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Tasko</string>
-    <string name="title_activity_main">Tasko</string>
+    <string name="app_name">Task Manager</string>
+    <string name="title_activity_main">Task Manager</string>
     <string name="package_name">com.malek.tasko</string>
     <string name="custom_url_scheme">com.malek.tasko</string>
 </resources>
