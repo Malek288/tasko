@@ -1,21 +1,15 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import useTheme from "./useTheme.js";
 import TaskCard from "./components/TaskoCard.jsx";
 
 function App() {
     const [tasks, setTasks] = useState("");
-    const [theme, setTheme] = useState(() =>
-        localStorage.getItem("theme") === "dark" ? "dark" : "light",
-    );
+    const [theme, setTheme] = useTheme();
     const [taskList, setTaskList] = useState(() => {
         const savedTasks = localStorage.getItem("taskList");
         return savedTasks ? JSON.parse(savedTasks) : [];
     });
-
-    useEffect(() => {
-        document.documentElement.dataset.theme = theme;
-        localStorage.setItem("theme", theme);
-    }, [theme]);
 
     useEffect(() => {
         localStorage.setItem("taskList", JSON.stringify(taskList));

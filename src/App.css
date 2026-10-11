@@ -57,7 +57,7 @@ body {
 .container {
   position: relative;
   min-height: 100vh;
-  padding: 80px 24px 80px;
+  padding: calc(80px + env(safe-area-inset-top, 0px)) 24px calc(80px + env(safe-area-inset-bottom, 0px));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,8 +66,8 @@ body {
 
 .theme-controls {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: calc(24px + env(safe-area-inset-top, 0px));
+  right: calc(24px + env(safe-area-inset-right, 0px));
 }
 
 .theme-toggle {
