@@ -69,7 +69,7 @@ function App() {
                     type="text"
                     placeholder="Add a new task..."
                 />
-                <button type="submit">Add Task</button>
+                <button type="submit">Add Task</button> 
             </form>
             <main>
                 {taskList.length === 0 ? (
