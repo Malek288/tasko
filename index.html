@@ -8,12 +8,27 @@
       href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/png" sizes="64x64" href="/tasko/pwa-64x64.png" />
+    <link rel="icon" href="/tasko/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/tasko/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tasko</title>
-    <script type="module" crossorigin src="/tasko/assets/index-DHFqKtQj.js"></script>
-    <link rel="stylesheet" crossorigin href="/tasko/assets/index-BGDkTKkz.css">
-  </head>
+    <link rel="apple-touch-icon" href="/tasko/apple-touch-icon.png" />
+    <meta name="theme-color" content="#167d78" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Task Manager" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Task Manager</title>
+    <script>
+      const theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content =
+        theme === 'dark' ? '#0f1b1e' : '#f4efe6';
+    </script>
+    <script type="module" crossorigin src="/tasko/assets/index-CCL4wpdF.js"></script>
+    <link rel="stylesheet" crossorigin href="/tasko/assets/index-DBU8-XWb.css">
+  <link rel="manifest" href="/tasko/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/tasko/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
   </body>
