@@ -5,15 +5,25 @@ import TaskCard from "./components/TaskoCard.jsx";
 
 function App() {
     const [tasks, setTasks] = useState("");
+    const [privateTaskInput, setPrivateTaskInput] = useState("");
+    const [showPrivateTasks, setShowPrivateTasks] = useState(false);
     const [theme, setTheme] = useTheme();
     const [taskList, setTaskList] = useState(() => {
         const savedTasks = localStorage.getItem("taskList");
+        return savedTasks ? JSON.parse(savedTasks) : [];
+    });
+    const [privateTaskList, setPrivateTaskList] = useState(() => {
+        const savedTasks = localStorage.getItem("privateTaskList");
         return savedTasks ? JSON.parse(savedTasks) : [];
     });
 
     useEffect(() => {
         localStorage.setItem("taskList", JSON.stringify(taskList));
     }, [taskList]);
+
+    useEffect(() => {
+        localStorage.setItem("privateTaskList", JSON.stringify(privateTaskList));
+    }, [privateTaskList]);
 
     function handleTask(e) {
         e.preventDefault();
@@ -31,6 +41,26 @@ function App() {
 
     function deleteTask(id) {
         setTaskList((currentList) =>
+            currentList.filter((task) => task.id !== id),
+        );
+    }
+
+    function handlePrivateTask(e) {
+        e.preventDefault();
+        if (!privateTaskInput.trim()) return;
+
+        const newTask = {
+            id: Date.now(),
+            title: privateTaskInput.trim(),
+            subject: "private",
+        };
+
+        setPrivateTaskList((currentList) => [...currentList, newTask]);
+        setPrivateTaskInput("");
+    }
+
+    function deletePrivateTask(id) {
+        setPrivateTaskList((currentList) =>
             currentList.filter((task) => task.id !== id),
         );
     }
@@ -53,33 +83,92 @@ function App() {
                 </button>
             </div>
             <header>
-                <h1>Welcome to React</h1>
-                <p>Get started by editing </p>
+                <h1>{showPrivateTasks ? "Private tasks" : "My tasks"}</h1>
+                <p>
+                    {showPrivateTasks
+                        ? "Only saved in this browser, separate from your task list."
+                        : "Keep track of what you need to get done."}
+                </p>
             </header>
-            <form onSubmit={handleTask}>
-                <input
-                    value={tasks}
-                    onChange={(e) => setTasks(e.target.value)}
-                    type="text"
-                    placeholder="Add a new task..."
-                />
-                <button type="submit">Add Task</button> 
-            </form>
-            <main>
-                {taskList.length === 0 ? (
-                    <p>No tasks yet.</p>
-                ) : (
-                    taskList.map((task) => (
-                        <TaskCard
-                            key={task.id}
-                            id={task.id}
-                            description={task.title}
-                            subject={task.subject}
-                            onDelete={deleteTask}
+            {showPrivateTasks ? (
+                <>
+                    <button
+                        type="button"
+                        className="back-button"
+                        onClick={() => setShowPrivateTasks(false)}
+                    >
+                        Back to my tasks
+                    </button>
+                    <form onSubmit={handlePrivateTask}>
+                        <input
+                            value={privateTaskInput}
+                            onChange={(e) => setPrivateTaskInput(e.target.value)}
+                            type="text"
+                            placeholder="Add a private task..."
+                            aria-label="Add a private task"
                         />
-                    ))
-                )}
-            </main>
+                        <button type="submit">Add Task</button>
+                    </form>
+                    <main>
+                        {privateTaskList.length === 0 ? (
+                            <p>No private tasks yet.</p>
+                        ) : (
+                            privateTaskList.map((task) => (
+                                <TaskCard
+                                    key={task.id}
+                                    id={task.id}
+                                    description={task.title}
+                                    subject={task.subject}
+                                    onDelete={deletePrivateTask}
+                                />
+                            ))
+                        )}
+                    </main>
+                </>
+            ) : (
+                <>
+                    <nav className="task-navigation" aria-label="Task lists">
+                        <button
+                            type="button"
+                            className="private-tasks-link"
+                            onClick={() => setShowPrivateTasks(true)}
+                        >
+                            Private tasks ({privateTaskList.length})
+                        </button>
+                    </nav>
+                    <form onSubmit={handleTask}>
+                        <input
+                            value={tasks}
+                            onChange={(e) => setTasks(e.target.value)}
+                            type="text"
+                            placeholder="Add a new task..."
+                            aria-label="Add a task"
+                        />
+                        <button type="submit">Add Task</button>
+                    </form>
+                    <main>
+                        {taskList.length === 0 ? (
+                            <button
+                                type="button"
+                                className="empty-state"
+                                onClick={() => setShowPrivateTasks(true)}
+                            >
+                                No tasks yet. Click here to add a private task.
+                            </button>
+                        ) : (
+                            taskList.map((task) => (
+                                <TaskCard
+                                    key={task.id}
+                                    id={task.id}
+                                    description={task.title}
+                                    subject={task.subject}
+                                    onDelete={deleteTask}
+                                />
+                            ))
+                        )}
+                    </main>
+                </>
+            )}
         </div>
     );
 }
