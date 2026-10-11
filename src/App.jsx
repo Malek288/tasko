@@ -127,15 +127,17 @@ function App() {
                 </>
             ) : (
                 <>
-                    <nav className="task-navigation" aria-label="Task lists">
-                        <button
-                            type="button"
-                            className="private-tasks-link"
-                            onClick={() => setShowPrivateTasks(true)}
-                        >
-                            Private tasks ({privateTaskList.length})
-                        </button>
-                    </nav>
+                    {privateTaskList.length > 0 && (
+                        <nav className="task-navigation" aria-label="Task lists">
+                            <button
+                                type="button"
+                                className="private-tasks-link"
+                                onClick={() => setShowPrivateTasks(true)}
+                            >
+                                Private tasks ({privateTaskList.length})
+                            </button>
+                        </nav>
+                    )}
                     <form onSubmit={handleTask}>
                         <input
                             value={tasks}
@@ -153,7 +155,7 @@ function App() {
                                 className="empty-state"
                                 onClick={() => setShowPrivateTasks(true)}
                             >
-                                No tasks yet. Click here to add a private task.
+                                No tasks yet.
                             </button>
                         ) : (
                             taskList.map((task) => (
