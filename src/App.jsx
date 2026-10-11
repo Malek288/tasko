@@ -134,7 +134,7 @@ function App() {
                                 className="private-tasks-link"
                                 onClick={() => setShowPrivateTasks(true)}
                             >
-                                Private tasks ({privateTaskList.length})
+                                Private tasks
                             </button>
                         </nav>
                     )}
