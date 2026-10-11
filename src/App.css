@@ -9,8 +9,34 @@
   --color-primary: #167d78;
   --color-primary-hover: #0f625e;
   --color-accent: #ef8068;
+  --color-accent-hover: #d96b4f;
   --color-border: #d8e2dc;
+  --color-success: #267f68;
+  --color-completed-border: #b8d8cb;
+  --color-hover-border: #a8c8bd;
+  --color-badge-text: #b94f3b;
+  --color-badge-background: #fff0eb;
   --shadow-card: 0 12px 30px rgba(23, 59, 67, 0.1);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-ink: #e5f0ed;
+  --color-muted: #a5bbb7;
+  --color-background: #172322;
+  --color-surface: #223331;
+  --color-surface-accent: #29423b;
+  --color-primary: #167d78;
+  --color-primary-hover: #0f625e;
+  --color-accent: #b94f3b;
+  --color-accent-hover: #983d31;
+  --color-border: #405752;
+  --color-success: #368d74;
+  --color-completed-border: #477467;
+  --color-hover-border: #5c8175;
+  --color-badge-text: #ffc1ae;
+  --color-badge-background: #533b35;
+  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.22);
 }
 
 * {
@@ -25,14 +51,44 @@ body {
   background: var(--color-background);
   color: var(--color-ink);
   font-size: 16px;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 .container {
-  padding: 64px 24px 80px;
+  position: relative;
+  min-height: 100vh;
+  padding: 80px 24px 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+.theme-controls {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.theme-toggle {
+  padding: 9px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-primary);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+  outline-offset: 3px;
 }
 
 header {
@@ -74,6 +130,8 @@ form input {
   width: 70%;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-ink);
   font-size: 1rem;
   outline: none;
   box-sizing: border-box;
@@ -83,6 +141,10 @@ form input {
 form input:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+form input::placeholder {
+  color: var(--color-muted);
 }
 
 form button {

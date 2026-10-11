@@ -32,14 +32,14 @@
 }
 
 .task-card:hover {
-    border-color: #a8c8bd;
+    border-color: var(--color-hover-border);
     box-shadow: 0 14px 28px rgba(23, 59, 67, 0.12);
     transform: translateY(-2px);
 }
 
 .completed {
     background: var(--color-surface-accent);
-    border-color: #b8d8cb;
+    border-color: var(--color-completed-border);
 }
 
 .completed .task-text {
@@ -52,8 +52,8 @@
 }
 
 .task-badge {
-    color: #b94f3b;
-    background-color: #fff0eb;
+    color: var(--color-badge-text);
+    background-color: var(--color-badge-background);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -127,7 +127,7 @@
 }
 
 .delete-button:hover {
-    background-color: #d96b4f;
+    background-color: var(--color-accent-hover);
     transform: translateY(-1px);
 }
 
